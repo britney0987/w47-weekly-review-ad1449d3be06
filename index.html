@@ -7,358 +7,110 @@
   <meta name="description" content="2026年第47周工作周报">
   <title>2026年第47周工作周报</title>
   <style>
-    :root {
-      --bg: #f3f2ee;
-      --paper: #fbfaf6;
-      --surface: #ffffff;
-      --ink: #17211f;
-      --muted: #66716d;
-      --line: #d9ddd7;
-      --teal: #0c655e;
-      --teal-soft: #e3f1ed;
-      --amber: #a35416;
-      --amber-soft: #fbeedc;
-      --red: #a82e24;
-      --red-soft: #f9e7e4;
-      --blue: #2b5f82;
-      --blue-soft: #e9f0f5;
-      --shadow: 0 14px 38px rgba(25, 37, 33, 0.07);
-      --radius: 8px;
-      --max: 1280px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background:
-        linear-gradient(90deg, rgba(12, 101, 94, 0.035) 1px, transparent 1px),
-        var(--bg);
-      background-size: 48px 48px;
-      font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-      font-size: 15px;
-      line-height: 1.72;
-    }
-    a { color: var(--teal); text-underline-offset: 3px; }
-    code {
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      background: #f4f5f2;
-      padding: 1px 5px;
-      color: #31443e;
-      font-size: 0.9em;
-      overflow-wrap: anywhere;
-    }
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      border-bottom: 1px solid rgba(217, 221, 215, 0.92);
-      background: rgba(243, 242, 238, 0.96);
-      backdrop-filter: blur(14px);
-    }
-    .nav-inner {
-      width: min(var(--max), calc(100% - 40px));
-      min-height: 60px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .nav-brand {
-      flex: 0 0 auto;
-      color: var(--ink);
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: 0;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      min-width: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .nav-links::-webkit-scrollbar { display: none; }
-    .nav-links a {
-      flex: 0 0 auto;
-      border-radius: 5px;
-      padding: 7px 9px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .nav-links a:hover,
-    .nav-links a[aria-current="true"] {
-      background: var(--teal-soft);
-      color: var(--teal);
-    }
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-    .hero {
-      padding: 72px 0 34px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.8fr);
-      gap: 48px;
-      align-items: end;
-    }
-    .eyebrow {
-      margin-bottom: 12px;
-      color: var(--teal);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    h1 {
-      max-width: 820px;
-      margin: 0;
-      font-size: clamp(36px, 5vw, 68px);
-      line-height: 1.08;
-      letter-spacing: 0;
-    }
-    .hero-summary {
-      max-width: 860px;
-      margin: 22px 0 0;
-      color: #43504b;
-      font-size: 17px;
-      line-height: 1.75;
-    }
-    .meta-panel {
-      border-left: 4px solid var(--teal);
-      padding: 6px 0 6px 22px;
-    }
-    .meta-row {
-      display: grid;
-      grid-template-columns: 74px minmax(0, 1fr);
-      gap: 12px;
-      padding: 9px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .meta-row:last-child { border-bottom: 0; }
-    .meta-label { color: var(--muted); font-size: 12px; font-weight: 700; }
-    .meta-value { font-size: 14px; font-weight: 650; }
-    .kpi-grid {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .kpi {
-      min-height: 132px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--paper);
-      padding: 20px 22px;
-      box-shadow: var(--shadow);
-    }
-    .kpi-label { color: var(--muted); font-size: 12px; font-weight: 700; }
-    .kpi-value { margin-top: 12px; font-size: 31px; font-weight: 800; line-height: 1; }
-    .kpi-note { margin-top: 10px; color: var(--muted); font-size: 12px; }
-    .kpi-alert .kpi-value { color: var(--red); }
-    .alert-band {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 14px auto 0;
-      border: 1px solid #e7c8c3;
-      border-radius: var(--radius);
-      background: var(--red-soft);
-      padding: 14px 18px;
-      color: #75261f;
-      font-weight: 650;
-    }
-    main { padding: 28px 0 70px; }
-    .report-section {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      border-top: 1px solid #cfd5cf;
-      padding: 54px 0;
-    }
-    .report-section-accent { border-top-color: #d8a974; }
-    .section-head {
-      display: grid;
-      grid-template-columns: 54px minmax(0, 1fr);
-      gap: 18px;
-      align-items: start;
-      margin-bottom: 24px;
-    }
-    .section-index {
-      padding-top: 7px;
-      color: var(--teal);
-      font: 800 13px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
-    h2 {
-      margin: 0;
-      font-size: clamp(24px, 3.1vw, 38px);
-      line-height: 1.25;
-      letter-spacing: 0;
-    }
-    h3 {
-      margin: 34px 0 14px;
-      font-size: 20px;
-      line-height: 1.35;
-    }
-    h3::before {
-      content: "";
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      margin-right: 10px;
-      border-radius: 50%;
-      background: var(--amber);
-      vertical-align: 2px;
-    }
-    .section-body > p,
-    .section-body > ol,
-    .section-body > ul,
-    .section-body > blockquote {
-      max-width: 1040px;
-    }
-    p { margin: 0 0 14px; }
-    ol, ul { margin: 0 0 20px; padding-left: 24px; }
-    li { margin: 8px 0; padding-left: 3px; }
-    li::marker { color: var(--teal); font-weight: 700; }
-    p, li, td { overflow-wrap: anywhere; }
-    blockquote {
-      margin: 18px 0;
-      border-left: 3px solid var(--blue);
-      background: var(--blue-soft);
-      padding: 14px 18px;
-    }
-    blockquote p { margin: 0; color: #2d4d62; }
-    .table-wrap {
-      width: 100%;
-      margin: 18px 0 26px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      overflow-x: auto;
-      box-shadow: 0 6px 20px rgba(25, 37, 33, 0.04);
-    }
-    table {
-      width: 100%;
-      min-width: 860px;
-      border-collapse: collapse;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    th, td {
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 12px 13px;
-      text-align: left;
-      vertical-align: top;
-    }
-    th:last-child, td:last-child { border-right: 0; }
-    tbody tr:last-child td { border-bottom: 0; }
-    th {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      background: #eef2ee;
-      color: #34443e;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-    tbody tr:nth-child(even) { background: #fafbf8; }
-    tbody tr:hover { background: #edf5f1; }
-    footer {
-      border-top: 1px solid #cfd5cf;
-      padding: 28px 0 42px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: 30px; padding-top: 50px; }
-      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .meta-panel { max-width: 620px; }
-    }
-    @media (max-width: 620px) {
-      .nav-inner { width: calc(100% - 24px); gap: 12px; }
-      .nav-brand { font-size: 13px; }
-      .container, .kpi-grid, .alert-band, .report-section {
-        width: calc(100% - 28px);
-      }
-      .hero { padding: 38px 0 26px; }
-      h1 { font-size: 40px; }
-      .hero-summary { font-size: 15px; }
-      .kpi-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .kpi { min-height: 120px; padding: 17px 15px; }
-      .kpi-value { font-size: 25px; }
-      .section-head { grid-template-columns: 38px minmax(0, 1fr); gap: 10px; }
-      .report-section { padding: 40px 0; }
-      table { min-width: 760px; font-size: 12px; }
-      th, td { padding: 10px; }
-    }
-  </style>
+:root {
+  --bg:#f3f2ee;--paper:#fbfaf6;--ink:#17211f;--muted:#65716c;
+  --line:#d8ddd7;--teal:#0c655e;--teal-soft:#e3f1ed;
+  --amber:#a35416;--amber-soft:#fbeedc;--red:#a82e24;--red-soft:#f9e7e4;
+  --blue:#2b5f82;--blue-soft:#e9f0f5;--max:1240px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:72px;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);
+font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+font-size:15px;line-height:1.72;overflow-x:clip}
+a{color:var(--teal);text-underline-offset:3px}
+code{border:1px solid var(--line);border-radius:4px;background:#f4f5f2;
+padding:1px 5px;overflow-wrap:anywhere}
+.site-nav{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);
+background:rgba(243,242,238,.96);backdrop-filter:blur(14px)}
+.nav-inner{width:min(var(--max),calc(100% - 40px));min-height:60px;margin:0 auto;
+display:flex;align-items:center;gap:20px}
+.brand{font-weight:800;color:var(--ink);text-decoration:none;flex:0 0 auto}
+.nav-links{display:flex;min-width:0;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{flex:0 0 auto;padding:7px 9px;border-radius:5px;color:var(--muted);
+font-size:13px;font-weight:650;text-decoration:none}
+.nav-links a:hover,.nav-links a[aria-current=true]{background:var(--teal-soft);color:var(--teal)}
+.container,main{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.hero{padding:54px 0 32px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.7fr);
+gap:36px;align-items:end}
+.eyebrow{color:var(--teal);font-size:12px;font-weight:800;text-transform:uppercase}
+h1{margin:10px 0 0;font-size:clamp(34px,5vw,60px);line-height:1.1}
+.hero-summary{margin:18px 0 0;color:#43504b;font-size:16px}
+.meta{border-left:4px solid var(--teal);padding-left:20px}
+.meta div{padding:9px 0;border-bottom:1px solid var(--line)}
+.meta div:last-child{border:0}.meta span{display:block}
+.meta .label{color:var(--muted);font-size:12px;font-weight:700}
+.kpis{width:min(var(--max),calc(100% - 40px));margin:0 auto;
+display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:19px 20px}
+.kpi .label{color:var(--muted);font-size:12px;font-weight:700}
+.kpi .value{margin-top:10px;font-size:30px;font-weight:800;line-height:1.1}
+.alert{width:min(var(--max),calc(100% - 40px));margin:14px auto 0;padding:13px 18px;
+border:1px solid #e7c8c3;border-radius:8px;background:var(--red-soft);color:#75261f;font-weight:650}
+.section{width:min(var(--max),calc(100% - 40px));margin:0 auto;border-top:1px solid var(--line);
+padding:46px 0}
+.section-head{display:grid;grid-template-columns:50px minmax(0,1fr);gap:14px;margin-bottom:20px}
+.section-index{color:var(--teal);font:800 13px/1.2 ui-monospace,Menlo,monospace;padding-top:5px}
+h2{margin:0;font-size:clamp(23px,3vw,34px)}h3{margin:28px 0 12px;font-size:19px}
+.table-wrap{width:100%;margin:16px 0 24px;border:1px solid var(--line);border-radius:8px;
+background:#fff;overflow-x:auto}
+table{width:100%;min-width:760px;border-collapse:collapse;font-size:13px}
+th,td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+padding:11px 12px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+th:last-child,td:last-child{border-right:0}tr:last-child td{border-bottom:0}
+th{background:#eef2ee;font-size:12px;font-weight:800;white-space:nowrap}
+tbody tr:nth-child(even){background:#fafbf8}
+blockquote{margin:16px 0;border-left:3px solid var(--blue);background:var(--blue-soft);
+padding:13px 17px}blockquote p{margin:0}
+.callout{border-left:4px solid var(--amber);background:var(--amber-soft);padding:14px 17px;margin:16px 0}
+.personal .hero h1{font-size:clamp(30px,4.5vw,48px)}
+.personal .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.private{display:inline-block;margin-top:12px;border-radius:999px;background:var(--red-soft);
+color:var(--red);padding:4px 10px;font-size:12px;font-weight:750}
+footer{border-top:1px solid var(--line);padding:24px 0 38px;color:var(--muted);font-size:12px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){
+.nav-inner,.container,main,.kpis,.alert,.section{width:calc(100% - 28px)}
+.brand{font-size:13px}.hero{padding-top:38px}h1{font-size:38px}.hero-summary{font-size:15px}
+.kpi{padding:16px 14px}.kpi .value{font-size:25px}.section{padding:38px 0}
+.section-head{grid-template-columns:36px minmax(0,1fr);gap:8px}table{min-width:700px}
+th,td{padding:9px}.personal .nav-links{display:none}}
+</style>
 </head>
-
-<body>
-  <nav class="site-nav" aria-label="周报章节">
+<body class="team">
+  <nav class="site-nav" aria-label="章节导航">
     <div class="nav-inner">
-      <a class="nav-brand" href="#top">W47 周报</a>
-      <div class="nav-links"><a href="#conclusion">本周结论</a><a href="#unfinished">未完成事项重点</a><a href="#lifecycle">上一周入离职核查</a><a href="#submission">日报提交与合规</a><a href="#workload">一周工作量与工时合理性</a><a href="#monthly-performance">11月绩效任务进度</a><a href="#efficiency">工作效率校准与系数状态</a><a href="#fixed-tasks">固定任务与逐人纠偏</a><a href="#issues">团队共性问题</a><a href="#review">上周动作复盘</a><a href="#next-week">下周重点</a><a href="#section-11">附：核验口径</a></div>
+      <a class="brand" href="#top">W47 团队周报</a>
+      <div class="nav-links"><a href="#decisions">本周管理决策</a><a href="#results">团队结果看板</a><a href="#losses">主要损耗与删除动作</a><a href="#efficiency">效率与质量</a><a href="#capability">能力进展</a><a href="#unfinished">未完成事项</a><a href="#monthly">月度绩效进度</a></div>
     </div>
   </nav>
   <main id="top">
     <header class="container hero">
       <div>
-        <div class="eyebrow">Weekly operations review · 2026 W47</div>
-        <h1>2026年第47周<br>工作周报</h1>
-        <p class="hero-summary">本周从“动作记录”进入“结果核验”：日报缺报、有效客资、官方账号发布和效率样本仍是关键缺口。先补齐可验证事实，再判断任务完成和绩效结果。</p>
+        <div class="eyebrow">Weekly operating review · 47</div>
+        <h1>2026年第47周工作周报</h1>
+        <p class="hero-summary">本周从“审计事实”切换到“推动改变”：团队版只保留经营决策、结果、损耗、效率和能力进展，个人只保留一个可验证的改进实验。</p>
+        
       </div>
-      <aside class="meta-panel" aria-label="报告范围">
-        <div class="meta-row"><span class="meta-label">统计周期</span><span class="meta-value">11月16日—11月20日</span></div>
-        <div class="meta-row"><span class="meta-label">在册范围</span><span class="meta-value">13人；1人长期病假</span></div>
-        <div class="meta-row"><span class="meta-label">数据来源</span><span class="meta-value">日报、员工管理、审批、系数库</span></div>
-        <div class="meta-row"><span class="meta-label">生成日期</span><span class="meta-value">2026年11月23日</span></div>
-      </aside>
+      <aside class="meta"><div><span class="label">统计周期</span><span>2026-11-16 至 2026-11-20</span></div><div><span class="label">应报人日</span><span>56</span></div><div><span class="label">有效提交</span><span>49</span></div><div><span class="label">合规率</span><span>87.5%</span></div></aside>
     </header>
-    <section class="kpi-grid" aria-label="关键指标">
-      <article class="kpi">
-        <div class="kpi-label">日报合规率</div>
-        <div class="kpi-value">87.50%</div>
-        <div class="kpi-note">有效提交49 / 应报56人日</div>
-      </article>
-      <article class="kpi kpi-alert">
-        <div class="kpi-label">W47缺报</div>
-        <div class="kpi-value">7人日</div>
-        <div class="kpi-note">11月累计仍缺17人日</div>
-      </article>
-      <article class="kpi">
-        <div class="kpi-label">明确记录工时</div>
-        <div class="kpi-value">287.11h</div>
-        <div class="kpi-note">来自50条原始日报</div>
-      </article>
-      <article class="kpi">
-        <div class="kpi-label">可结算效率样本</div>
-        <div class="kpi-value">0</div>
-        <div class="kpi-note">编号、工时、验收尚未成组</div>
-      </article>
-    </section>
-    <div class="alert-band">未完成重点：7个本周缺报、有效客资台账、两个官方视频号发布证据、办公用电安全闭环。</div>
-    <section class="report-section" id="conclusion"><div class="section-head"><span class="section-index">01</span><h2>一、本周结论</h2></div><div class="section-body"><ol><li>上一周无新入职、无新离职，周末在册13人。员工管理表已完成渡渡补录；蜜璃离职日期保持2026-11-13，菲菲为停工留职且长期病假覆盖至12月15日。</li><li>W47应报56人日，有效提交49人日，日报合规率87.50%。缺报共7人日：花花1天、皮卡1天、木子2天、洛米2天、杰斯1天。</li><li>共采集50条原始日报，按“人员+日期”归并为49个有效提交日；花花11月17日两条日报内容不完全相同，计1个有效提交日。两条空人员日报经记录历史核实由孙杰睿创建，归属杰斯。</li><li>50条日报均明确写出时间，记录工时合计287.11小时。已修正“视频标题中的5小时被误当时长”“总工时与上午/下午拆分重复累计”和<code>20m</code>等分钟缩写漏算问题；该合计用于记录完整性，不等同有效产出价值。</li><li>11月1日至20日累计应报167人日，有效提交150人日，累计合规率89.82%；当前仍缺17人日，其中W47新增7人日，W45、W46历史遗留10人日未补齐。</li><li>运营组11月目标进入结果窗口。截至11月20日已过15个工作日、占全月21个工作日的71.43%，木子、洛米、杰斯的个人有效客资目标分别应达到约50、50、25个；当前没有经CRM或客户台账确认的有效客资数，不能把KOC、PR名单、加微信或截流动作直接计入。</li><li>公司官方视频号与灵汐IP视频号仍缺可核验发布链接。花花本周记录的是东湖高新第三方项目发布，不得替代互远AI官方账号任务；皮卡有灵汐IP视频制作计划，但未见成片和发布证据。</li><li>公众号固定任务已完成至少2次发布记录；小草朋友圈素材有连续产出，但尚无“3条内容+至少5张图+账号发布清单”的完整证据包。</li><li>日报任务解析表W47仍为0条，继续回退原始日报。权威系数库仍为v0.3、35项，11月9日后没有新版本。</li><li>本周视频唯一编号明显改善，花花和米咖多条任务已带项目编号和任务级工时；但“唯一编号+标准工时+实际有效工时+验收结果”四项齐全的可结算效率样本仍为0。</li></ol></div></section><section class="report-section report-section-accent" id="unfinished"><div class="section-head"><span class="section-index">02</span><h2>二、未完成事项重点</h2></div><div class="section-body"><div class="table-wrap"><table><thead><tr><th>优先级</th><th>未完成事项</th><th>责任人</th><th>当前状态</th><th>本周要求</th></tr></thead><tbody><tr><td>P0</td><td>W47缺报7人日</td><td>花花、皮卡、木子、洛米、杰斯</td><td>有效提交49/56；缺报日期分别为11/16、11/19、11/19至11/20、11/19至11/20、11/18</td><td>11/24前补齐或提交书面说明；无审批的缺报按不合规处理</td></tr><tr><td>P0</td><td>运营组有效客资结果不可核验</td><td>灵汐、梦幻、木子、洛米、杰斯</td><td>15/21时间进度应约达50、50、25个；当前可核验有效客资为0个，只能确认存在内容、KOC/PR筛选和截流准备动作</td><td>11/24前建立统一客户台账，逐条记录触达、有效客资、下一步、责任人、证据和验收人</td></tr><tr><td>P0</td><td>公司官方视频号与灵汐IP视频号无发布证据</td><td>灵汐、花花、皮卡、品牌组</td><td>东湖高新项目发布不能替代互远AI官方账号；灵汐IP视频没有成片或发布链接</td><td>11/24前明确账号、主责人、发布链接和验收人；无链接视为未确认完成</td></tr><tr><td>P0</td><td>办公区用电安全仍未闭环</td><td>梦幻、行政责任人</td><td>W46发生接线板冒火花后，W47连续记录“规范办公室用电安全”，但未见检查清单、照片、整改项和复查结论</td><td>11/25前提交线路、插排、消防设施检查与复查留档；不能只写“已规范”</td></tr><tr><td>P1</td><td>历史缺报仍有10人日</td><td>灵汐、布鲁托、渡渡、杰斯</td><td>11月累计缺17人日，扣除W47新增7人日后仍有10个历史人日未补</td><td>11/24前补报或说明；离职人员历史记录不再追报</td></tr><tr><td>P1</td><td>日报解析表连续为0</td><td>布鲁托、梦幻</td><td>W47查询0条、<code>has_more=false</code>，周报仍依赖原始日报</td><td>11/27前修复触发和日期同步，并用W47的50条原始日报回放验收</td></tr><tr><td>P1</td><td>效率校准没有完整样本</td><td>全体常规考核人员</td><td>多数任务缺唯一编号、逐项实际有效工时或验收结果，不能用日总工时直接套系数</td><td>11/27前形成首批3至5个四项齐全样本</td></tr><tr><td>P1</td><td>固定任务证据包不完整</td><td>小草、皮卡、品牌组</td><td>公众号有发布记录；朋友圈缺最终数量、图片和账号清单；两个视频号缺链接；原蜜璃任务未见正式交接</td><td>11/27前按固定任务表逐项补齐链接、图片、负责人和验收人</td></tr><tr><td>P1</td><td>花花11月17日两条日报存在任务重叠</td><td>花花</td><td>两条均记录青山企业脚本和十个园区运营总结，合计11.33小时，可能包含重复描述</td><td>11/24前说明是续做、修订还是重复提交；后续一日一条并保留任务编号</td></tr></tbody></table></div></div></section><section class="report-section" id="lifecycle"><div class="section-head"><span class="section-index">03</span><h2>三、上一周入离职核查</h2></div><div class="section-body"><div class="table-wrap"><table><thead><tr><th>类型</th><th>人员</th><th>日期</th><th>事实</th><th>处理</th></tr></thead><tbody><tr><td>入职</td><td>无</td><td></td><td>W47无新入职人员</td><td>不影响应报日</td></tr><tr><td>离职</td><td>无</td><td></td><td>W47无新离职人员</td><td>不影响应报日</td></tr><tr><td>历史离职</td><td>蜜璃（汤思琪）</td><td>2026-11-13</td><td>已离职并退出应报、工时和常规任务统计</td><td>不进入W47任何分母</td></tr><tr><td>长期病假</td><td>菲菲（顾云菲）</td><td>2026-09-15至2026-12-15</td><td>停工留职，已批准长期病假</td><td>W47不纳入应报日</td></tr></tbody></table></div><p><strong>核查结论：</strong> 员工管理表revision 171、17条记录；W47无入离职事件，周末在册13人。渡渡已补录，员工管理表原先缺人的问题在本期取数中已消失。</p></div></section><section class="report-section" id="submission"><div class="section-head"><span class="section-index">04</span><h2>四、日报提交与合规</h2></div><div class="section-body"><p>应报日报日按周一至周五扣除已批准全假、长期病假和离职覆盖日。部分请假且当天仍有工作的，仍计应报日；外出不扣应报日。</p><div class="table-wrap"><table><thead><tr><th>姓名</th><th>分组</th><th>应报日</th><th>原始条数</th><th>有效提交日</th><th>缺报日</th><th>合规率</th><th>状态</th><th>异常说明</th></tr></thead><tbody><tr><td>灵汐</td><td>管理层</td><td>5</td><td>5</td><td>5</td><td>无</td><td>100.00%</td><td>合规</td><td>上海建行方案、行业培训产品、商务接待和个人IP推进均有记录</td></tr><tr><td>叮当</td><td>管理层</td><td>5</td><td>5</td><td>5</td><td>无</td><td>100.00%</td><td>合规</td><td>招聘、财务自动化、供应商入库、报销和投标支持持续记录</td></tr><tr><td>布鲁托</td><td>管理层</td><td>5</td><td>5</td><td>5</td><td>无</td><td>100.00%</td><td>合规</td><td>技术任务连续5天有记录；11/17记录10.25小时，需拆分核对</td></tr><tr><td>梦幻</td><td>项目与OPS</td><td>5</td><td>5</td><td>5</td><td>无</td><td>100.00%</td><td>合规</td><td>行政、投标、DexBuddy和EVO任务连续记录；用电安全仍缺复查证据</td></tr><tr><td>花花</td><td>项目与OPS</td><td>5</td><td>5</td><td>4</td><td>11/16</td><td>80.00%</td><td>缺报</td><td>11/17两条记录合并为1个有效日，但存在任务重叠和时间重复风险</td></tr><tr><td>皮卡</td><td>品牌组</td><td>5</td><td>4</td><td>4</td><td>11/19</td><td>80.00%</td><td>缺报</td><td>11/18、11/20东湖高新外拍均已审批；灵汐IP视频未见成片链接</td></tr><tr><td>米咖</td><td>品牌组</td><td>5</td><td>5</td><td>5</td><td>无</td><td>100.00%</td><td>合规</td><td>青山、汉阳、黄冈项目视频均有记录，项目编号使用较完整</td></tr><tr><td>小草</td><td>品牌组</td><td>5</td><td>5</td><td>5</td><td>无</td><td>100.00%</td><td>合规</td><td>公众号、封面、朋友圈和账号维护均有记录</td></tr><tr><td>渡渡</td><td>品牌组</td><td>3</td><td>3</td><td>3</td><td>无</td><td>100.00%</td><td>合规</td><td>11/19至11/20事假18小时已批准；莫莫IP视频连续推进</td></tr><tr><td>木子</td><td>运营组</td><td>5</td><td>3</td><td>3</td><td>11/19、11/20</td><td>60.00%</td><td>缺报</td><td>账号内容、直播支持和客户截流登记有记录，但本周后两天未报</td></tr><tr><td>洛米</td><td>运营组</td><td>5</td><td>3</td><td>3</td><td>11/19、11/20</td><td>60.00%</td><td>缺报</td><td>KOC/PR筛选、个人IP方案和自动化账号记录持续，本周后两天未报</td></tr><tr><td>杰斯</td><td>运营组</td><td>3</td><td>2</td><td>2</td><td>11/18</td><td>66.67%</td><td>缺报</td><td>11/16全天、11/20全天病假不扣应报日；11/17部分请假仍应报；两条空人员记录已核实归属杰斯</td></tr><tr><td>菲菲</td><td>运营组</td><td>0</td><td>0</td><td>0</td><td>不适用</td><td>不适用</td><td>病假</td><td>长期病假覆盖至2026-12-15，不进入本周常规工作评价</td></tr></tbody></table></div><p><strong>汇总：</strong> 原始日报50条，有效提交49人日，同日额外记录1条，应报56人日，缺报7人日，合规率87.50%。50条日报均含明确时间。</p><h3>请假、外出与出差核对</h3><div class="table-wrap"><table><thead><tr><th>姓名</th><th>日期</th><th>事实</th><th>统计处理</th></tr></thead><tbody><tr><td>杰斯</td><td>11/16</td><td>事假9小时</td><td>当天不纳入应报日</td></tr><tr><td>杰斯</td><td>11/17 08:00至13:00</td><td>事假4小时</td><td>当天仍有工作，仍计应报日</td></tr><tr><td>杰斯</td><td>11/20</td><td>病假9小时</td><td>当天不纳入应报日</td></tr><tr><td>渡渡</td><td>11/19至11/20</td><td>事假18小时</td><td>两天均不纳入应报日</td></tr><tr><td>米咖</td><td>11/16 14:00至18:00</td><td>事假4小时</td><td>当天仍有工作，仍计应报日</td></tr><tr><td>菲菲</td><td>09/15至12/15</td><td>长期病假</td><td>W47不纳入应报日</td></tr><tr><td>花花、皮卡</td><td>11/18</td><td>东湖高新拍摄外出9小时</td><td>计入工作，不扣应报日</td></tr><tr><td>花花、皮卡</td><td>11/20</td><td>东湖高新拍摄外出9小时</td><td>计入工作，不扣应报日</td></tr></tbody></table></div><p><strong>审批数据：</strong> W47已办请假5条、外出4条、出差0条，均<code>has_more=false</code>。</p></div></section><section class="report-section" id="workload"><div class="section-head"><span class="section-index">05</span><h2>五、一周工作量与工时合理性</h2></div><div class="section-body"><blockquote><p>工时只累计日报明确写出的“小时/分钟”，未写时间不估算。同一人员同一天多条记录归并为一个有效提交日；工时占比表示时间投入，不代表产出价值或绩效高低。</p></blockquote><div class="table-wrap"><table><thead><tr><th>姓名</th><th>记录工时</th><th>工时占比</th><th>主要工作</th><th>本周可验收结果或进展</th></tr></thead><tbody><tr><td>灵汐</td><td>24.83</td><td>8.65%</td><td>上海建行方案、行业培训产品、招聘与商务接待、直播复盘、个人IP和品牌资料</td><td>完成方案多轮修改和汽车行业PPT文字，确定1项AI沙龙合作；持续搭建个人IP内容</td></tr><tr><td>叮当</td><td>22.67</td><td>7.90%</td><td>招聘、财务自动化、供应商入库、面试、投标资料、报销</td><td>财务报表和社保公积金流程形成自动化记录，招聘持续触达，供应商入库和项目申报推进</td></tr><tr><td>布鲁托</td><td>43.75</td><td>15.24%</td><td>小红书增长引擎、象群任务包、小象技能训练、MCP、设备部署</td><td>打通飞书领任务到小红书发帖链路，完成5台手机部署和多项稳定性修复；11/17负荷较高</td></tr><tr><td>梦幻</td><td>35.50</td><td>12.36%</td><td>行政、投标、合同、电话卡、DexBuddy、EVO数字员工</td><td>完成售前问答手册2.0、EVO操作手册初版和多批投标支持；用电安全检查仍缺证据</td></tr><tr><td>花花</td><td>28.00</td><td>9.75%</td><td>东湖高新项目拍摄、脚本、视频发布、数据、排期和审核</td><td>完成黄冈与佩尔拍摄，连续发布项目视频；11/17两条日报存在任务重叠，11/16缺报</td></tr><tr><td>皮卡</td><td>23.00</td><td>8.01%</td><td>品牌宣发视频、东湖高新外拍、选题、审核和带教</td><td>完成品牌宣发视频和两次项目拍摄，持续检查米咖、小草交付；11/19缺报</td></tr><tr><td>米咖</td><td>23.83</td><td>8.30%</td><td>青山、汉阳、黄冈项目视频制作与修改</td><td>完成青山113、79等任务，黄冈111长视频和短视频推进至70%；项目编号较完整</td></tr><tr><td>小草</td><td>26.12</td><td>9.10%</td><td>公众号、朋友圈、视频封面、账号维护、Codex工作区</td><td>完成多篇公众号内容发布和多张封面；朋友圈有素材与发布动作，缺完整数量清单</td></tr><tr><td>渡渡</td><td>14.33</td><td>4.99%</td><td>莫莫IP视频、画面素材、工作流、业务培训</td><td>制作莫莫IP 28视频并推进29视频，完成素材分层和版本管理流程；需补链接和验收</td></tr><tr><td>木子</td><td>17.75</td><td>6.18%</td><td>小红书内容、直播支持、违规词整理、客户截流登记</td><td>发布多篇账号内容并建立截流私信登记表；11/19至11/20缺报，有效客资仍不可核验</td></tr><tr><td>洛米</td><td>18.83</td><td>6.56%</td><td>小红书图文、个人IP矩阵、KOC/PR筛选、小象账号</td><td>完成多篇图文、KOC/PR资料整理和个人IP矩阵方案；11/19至11/20缺报</td></tr><tr><td>杰斯</td><td>8.50</td><td>2.96%</td><td>直播协助、直播复盘、话术整理、口播拍摄、抖音养号</td><td>11/17和11/19各1条记录，完成直播支持与话术拍摄；11/18缺报，客户结果未记录</td></tr><tr><td>菲菲</td><td>0.00</td><td>不适用</td><td>不适用</td><td>全周病假，不进入本周常规工作评价</td></tr></tbody></table></div><p><strong>工时合计：</strong> 287.11小时，来自50条明确写出时间的原始日报；按49个有效提交日计算，平均每条记录5.74小时、每个有效提交日5.86小时。</p><div class="table-wrap"><table><thead><tr><th>对象</th><th>证据</th><th>当前判断</th><th>需要补充</th><th>下一步</th></tr></thead><tbody><tr><td>布鲁托</td><td>11/17记录10.25小时，5天合计43.75小时</td><td>技术任务密度高，存在真实加班或跨任务合并的可能</td><td>逐项工时、是否跨日、交付链接和验收状态</td><td>11/24前拆分11/17，并减少同日并行任务</td></tr><tr><td>花花</td><td>11/17两条日报合计11.33小时，青山脚本和园区总结重复出现</td><td>不能直接认定重复，但当前工时存在重叠风险</td><td>说明续做、修订或重复提交；保留唯一任务编号</td><td>11/24前完成说明，之后一日一条、任务级计时</td></tr><tr><td>杰斯</td><td>有效工时仅8.50小时，且11/18缺报</td><td>本周可核验投入明显少，部分与请假有关，部分为记录缺失</td><td>11/18补报并补充触达、有效客资和转化结果</td><td>11/24前补齐日报与结果台账</td></tr><tr><td>叮当</td><td>11/19至11/20分别记录2.50、1.67小时</td><td>有工作内容但时间明显短于常规工作日</td><td>区分未记录时间与真实短时投入</td><td>后续按任务写清实际工时，不自动补齐</td></tr><tr><td>灵汐、梦幻</td><td>会议、沟通、审核较多</td><td>记录较完整，但部分会议只有时长没有决策和后续责任</td><td>关键会议补决策、责任人、截止时间</td><td>用会议闭环表替代重复口述</td></tr></tbody></table></div><p><strong>判定边界：</strong> 工时高低不等于效率高低。效率必须按“已验收任务的标准工时与实际有效工时”核算；日总工时不能直接套到视频、文章或客户结果上。</p></div></section><section class="report-section" id="monthly-performance"><div class="section-head"><span class="section-index">06</span><h2>六、11月绩效任务进度</h2></div><div class="section-body"><p>11月常规岗位使用“业务/任务90% + AI化10%”；运营B轨使用“任务80% + AI化10% +质量10%”。木子使用“个人任务70% + 团队任务10% + AI化10% +质量10%”。AI化信息暂按“累计有效日报日÷累计应报日”展示，不提前形成最终绩效分或发放系数。</p><div class="table-wrap"><table><thead><tr><th>姓名</th><th>11月模板</th><th>月度目标或考核重点</th><th>截至11/20进展</th><th>AI化信息</th><th>当前判断</th><th>下一步验证</th></tr></thead><tbody><tr><td>灵汐</td><td>管理层认定</td><td>经营复盘、重点客户与方案、组织与内容检查</td><td>累计日报13/15；上海建行方案、汽车/银行培训产品、商务接待和AI沙龙合作有记录</td><td>86.67%</td><td>进行中</td><td>月末提交经营结果、合作转化和组织效率复盘</td></tr><tr><td>叮当</td><td>管理层认定</td><td>财务更新、现金流、招聘、供应商和核心资源</td><td>累计日报15/15；财务报表自动化、供应商入库、招聘和报销持续推进</td><td>100.00%</td><td>进行中</td><td>补财务结果、招聘转化和项目回款证据</td></tr><tr><td>布鲁托</td><td>管理层认定</td><td>技术里程碑、平台稳定、自动化节省、SLA</td><td>累计日报9/15；小象、象群、增长引擎和MCP链路有明显进展</td><td>60.00%</td><td>记录风险</td><td>补技术里程碑验收、剩余6天日报和效率节省说明</td></tr><tr><td>梦幻</td><td>OPS 90/10</td><td>任务闭环率≥90%、会议闭环、行政风险、AI流程稳定</td><td>累计日报10/10；EVO、售前工具包、投标和行政支持持续完成</td><td>100.00%</td><td>进行中</td><td>建立任务闭环台账，关闭用电安全事项</td></tr><tr><td>花花</td><td>项目经理45+45+10</td><td>成本、人效、里程碑、项目P&amp;L和回款</td><td>累计日报14/15；东湖高新拍摄、发布、脚本、数据和排期连续推进；成本与回款需月末确认</td><td>93.33%</td><td>月末计算</td><td>补项目P&amp;L、里程碑准时率和回款节点；第三方项目与公司账号分账</td></tr><tr><td>皮卡</td><td>品牌组90/10</td><td>复杂视频、单条时长、分析培训、模板标准</td><td>累计日报14/15；完成品牌宣发视频和两次项目拍摄，持续审核与带教</td><td>93.33%</td><td>进行中</td><td>补成片链接、编号、逐条工时和灵汐IP视频结果</td></tr><tr><td>米咖</td><td>品牌组90/10</td><td>东湖高新常规视频16条及单条效率</td><td>累计日报15/15；青山113、79、汉阳104和黄冈111持续推进</td><td>100.00%</td><td>进度推进</td><td>以已发布视频库核对条数，补验收和返工时间</td></tr><tr><td>小草</td><td>品牌组90/10</td><td>内部IP账号、作图、视频和新媒体支持</td><td>累计日报14/14；公众号多篇发布、封面和朋友圈素材持续产出</td><td>100.00%</td><td>进行中</td><td>补朋友圈3条/5图和每篇内容的任务级耗时</td></tr><tr><td>渡渡</td><td>品牌组90/10</td><td>AI虚拟人、活动视频和交付支持</td><td>累计日报10/11；莫莫IP 28/29视频、工作流和培训有记录</td><td>90.91%</td><td>进行中</td><td>补视频编号、链接、验收和返工时间</td></tr><tr><td>木子</td><td>个人任务70%+团队10%+AI10%+质量10%</td><td>个人有效客资70个；团队任务完成率≥90%</td><td>累计日报12/14；账号内容、直播支持、违规词和截流登记持续推进；11/19至11/20缺报</td><td>85.71%</td><td>不能判定达标</td><td>补客户台账、团队工作包和本周缺报</td></tr><tr><td>洛米</td><td>运营90/10</td><td>有效客资70个</td><td>累计日报13/15；KOC/PR筛选、个人IP矩阵、小象账号和内容制作持续推进；11/19至11/20缺报</td><td>86.67%</td><td>不能判定达标</td><td>将候选资源转为有效客资台账并补缺报</td></tr><tr><td>杰斯</td><td>运营90/10</td><td>有效客资35个</td><td>累计日报11/13；直播协助、话术和拍摄有记录，但没有触达和有效客资数；11/18缺报</td><td>84.62%</td><td>明显落后</td><td>恢复每日截流台账，补客户结果和缺报</td></tr><tr><td>菲菲</td><td>长期病假</td><td>不进入常规月度考核</td><td>已批准病假覆盖2026-09-15至2026-12-15</td><td>不适用</td><td>不适用</td><td>返岗前确认工作安排</td></tr></tbody></table></div><p><strong>月末计算边界：</strong> 当前展示截至11月20日的任务进展和AI化信息，不提前生成最终绩效分。项目成本、回款、有效客资和验收结果未完成确认的，均保持“进行中”或“不能判定”。</p><h3>运营组任务达标判断</h3><div class="table-wrap"><table><thead><tr><th>人员</th><th>11月目标</th><th>15/21时间进度应达到</th><th>当前可核验结果</th><th>判断</th><th>必须补齐</th></tr></thead><tbody><tr><td>木子</td><td>有效客资70个；团队任务完成率≥90%</td><td>50.00个；团队任务须有工作包和验收台账</td><td>0个已确认；已建立截流私信登记表，有客户信息对接动作</td><td>不能判定达标</td><td>有效客资、触达、成交、异常、团队工作包和验收人</td></tr><tr><td>洛米</td><td>有效客资70个</td><td>50.00个</td><td>0个已确认；KOC/PR名单属于候选资源，不等于有效客资</td><td>不能判定达标</td><td>候选人需求、联系方式、同意跟进、下一步和有效客资数</td></tr><tr><td>杰斯</td><td>有效客资35个</td><td>25.00个</td><td>0个已确认；本周未记录截流触达或客户结果</td><td>明显落后</td><td>11/18日报、每日截流台账、有效客资和转化结果</td></tr></tbody></table></div><p><strong>运营组结论：</strong> 当前“0个可核验”不等于实际客户一定为0，但现有日报和台账不能证明达标。下周必须先补数据链，再谈结果完成率。</p></div></section><section class="report-section" id="efficiency"><div class="section-head"><span class="section-index">07</span><h2>七、工作效率校准与系数状态</h2></div><div class="section-body"><p>权威<a href="https://fcnegd976pzo.feishu.cn/wiki/SbyvwteeFiNiLRkhnABcmmZZnkb?from=from_copylink" target="_blank" rel="noreferrer">工作系数与标准库</a>当前为v0.3、35项，标准表revision 86；版本记录revision 3、共4条，最新版本日期为2026-11-09。W47没有形成新版本，也未发现需要临时修改系数的依据。</p><p><code>效率符合率 = Σ效率达标项标准工时 ÷ Σ全部有效任务标准工时 × 100%</code></p><div class="table-wrap"><table><thead><tr><th>任务类型</th><th>本周数据</th><th>能否计算</th><th>当前缺口</th></tr></thead><tbody><tr><td>花花项目视频与脚本</td><td>多条记录带项目编号、任务级工时和发布动作</td><td>暂不能计算</td><td>部分任务在一条日报中合并计时，验收链接未统一</td></tr><tr><td>米咖项目视频</td><td>青山113、79、汉阳104、黄冈111均有编号和工时</td><td>暂不能计算</td><td>缺已发布视频库逐条对应、返工拆分和验收状态</td></tr><tr><td>皮卡品牌视频与拍摄</td><td>品牌宣发视频、黄冈和佩尔拍摄有记录</td><td>暂不能计算</td><td>缺成片链接、标准类型映射和单条实际有效工时</td></tr><tr><td>小草公众号与朋友圈</td><td>公众号写作、配图、排版和发布有连续记录</td><td>可开始整理</td><td>需拆成写作、配图、排版三个独立任务编号并补验收</td></tr><tr><td>运营组内容与截流</td><td>小红书图文、KOC/PR、养号和直播有记录</td><td>暂不能计算</td><td>缺有效客资结果、任务编号和逐项验收</td></tr><tr><td>EVO/AI工作流</td><td>DexBuddy、Codex EVO、MCP和自动化持续应用</td><td>暂不能进入权威系数</td><td>缺稳定输入、节省时间、采用范围和返工样本</td></tr></tbody></table></div><p><strong>效率结论：</strong> 本周可结算效率样本为0个，不代表效率符合率为0。视频编号已有改善，下一阶段重点是把任务编号、逐项实际有效工时和验收结果接在同一行。</p></div></section><section class="report-section" id="fixed-tasks"><div class="section-head"><span class="section-index">08</span><h2>八、固定任务与逐人纠偏</h2></div><div class="section-body"><h3>固定任务要求</h3><div class="table-wrap"><table><thead><tr><th>固定任务</th><th>周期目标</th><th>主责或关联人</th><th>本周证据</th><th>本周结论</th></tr></thead><tbody><tr><td>互远AI视频号</td><td>每周1条</td><td>品牌账号责任组</td><td>木子记录“品牌视频号内容”1条，但未明确账号和链接；花花记录的是东湖高新项目号</td><td>未确认完成</td></tr><tr><td>灵汐IP视频号</td><td>每周1条</td><td>灵汐IP责任组、皮卡</td><td>皮卡有灵汐IP视频素材与剪辑计划，未见成片链接或发布记录</td><td>未确认完成</td></tr><tr><td>公众号</td><td>每周1篇</td><td>小草</td><td>11/18、11/19均有公众号文案修改或发布记录</td><td>已完成至少1篇</td></tr><tr><td>小草朋友圈内容</td><td>每周3条、至少5张图</td><td>小草、皮卡</td><td>11/17完成花絮朋友圈和九宫格并发送公司群；11/20发布token省钱攻略朋友圈；缺完整账号清单</td><td>部分完成，待证据包</td></tr><tr><td>原蜜璃灵汐IP视频</td><td>明确新主责并交付2条</td><td>灵汐、花花、皮卡</td><td>本周只见皮卡IP视频计划，未见正式交接表、2条成片或发布链接</td><td>未确认交接完成</td></tr></tbody></table></div><h3>逐人纠偏</h3><div class="table-wrap"><table><thead><tr><th>姓名</th><th>本周事实</th><th>影响</th><th>下周动作</th><th>验证方式</th></tr></thead><tbody><tr><td>灵汐</td><td>日报5/5；方案、商务、内容和组织任务并行</td><td>关键决策和合作转化还缺结构化结果</td><td>月末前把方案、合作、内容和组织动作接到结果</td><td>方案版本、合作状态、决策记录和验收人</td></tr><tr><td>叮当</td><td>日报5/5；财务、招聘、投标和报销并行</td><td>部分日报时间较短，任务结果分散</td><td>补财务结果、招聘转化和项目回款</td><td>自动化回读、候选人状态和回款记录</td></tr><tr><td>布鲁托</td><td>日报5/5；11/17记录10.25小时</td><td>技术任务密度高，存在过载和记录合并风险</td><td>拆分高工时日，减少同日并行</td><td>任务级工时、版本、复测和链接</td></tr><tr><td>梦幻</td><td>日报5/5；行政与AI流程并行</td><td>用电安全仍未形成闭环证据</td><td>完成检查、整改、复查留档</td><td>清单、照片、责任人和复查结论</td></tr><tr><td>花花</td><td>4/5有效日；11/17两条记录重叠</td><td>缺报与工时重复同时影响口径</td><td>11/16补报，说明11/17重叠并改一日一条</td><td>补报记录、任务编号和工时说明</td></tr><tr><td>皮卡</td><td>4/5有效日；完成品牌视频和两次拍摄</td><td>11/19缺报，IP视频未形成发布证据</td><td>补11/19日报，提交IP视频成片和链接</td><td>日报、成片、发布链接和验收</td></tr><tr><td>米咖</td><td>日报5/5；项目视频连续交付</td><td>编号较好，但验收和返工仍不完整</td><td>按项目编号建立交付清单</td><td>唯一编号、实际工时、返工、链接和验收</td></tr><tr><td>小草</td><td>日报5/5；公众号和新媒体持续产出</td><td>朋友圈固定任务缺数量与图片清单</td><td>补3条/5图清单和账号发布证据</td><td>条目、图片、账号、发布时间和验收人</td></tr><tr><td>渡渡</td><td>应报3/3；莫莫IP视频推进</td><td>成片链接和验收未成组出现</td><td>建立IP视频交付清单</td><td>视频编号、链接、版本、时长和验收</td></tr><tr><td>木子</td><td>3/5有效日；截流登记表已建立</td><td>日报缺2天，有效客资不能核验</td><td>补11/19至11/20日报，补客户台账</td><td>日报、触达、有效客资、成交和异常</td></tr><tr><td>洛米</td><td>3/5有效日；KOC/PR资源持续筛选</td><td>候选资源未转成有效客资，日报缺2天</td><td>补11/19至11/20日报，逐条跟进候选资源</td><td>联系方式、需求、同意跟进和下一步</td></tr><tr><td>杰斯</td><td>2/3有效日；空人员记录已归属</td><td>缺11/18日报，客户结果缺失</td><td>补日报和每日截流台账</td><td>触达量、有效客资、转化和账号异常</td></tr></tbody></table></div></div></section><section class="report-section" id="issues"><div class="section-head"><span class="section-index">09</span><h2>九、团队共性问题</h2></div><div class="section-body"><ol><li>日报仍未成为稳定经营数据源。W47缺7人日，11月累计缺17人日，且历史缺报仍有10人日未补；月底临时追补会降低事实可信度。</li><li>解析表连续为0，导致人员归属、任务类型、工时和结果仍靠原始日报人工拆解。空人员日报本次通过记录历史归因，但系统层没有阻断同类问题。</li><li>工时格式不统一。本周同时出现<code>20m</code>、<code>1.5h</code>、范围工时和“总工时+上午/下午拆分”，原脚本会误算；本次已修复，但员工侧仍需统一写法。</li><li>运营结果台账仍是最大缺口。内容发布、KOC/PR筛选和截流准备不能替代有效客资；必须先定义有效客资、触达、跟进、成交和异常字段。</li><li>官方账号与项目账号继续混在一起。东湖高新是第三方项目，不能作为互远AI官方账号或灵汐IP账号的完成证据。</li><li>视频编号改善，但交付闭环没同步改善。有编号不等于有验收，仍要补链接、版本、新做/返工、实际有效工时和验收人。</li><li>固定任务需要证据包而不是动作描述。公众号已有发布记录，朋友圈和两个视频号仍要账号、链接或图片清单才能验收。</li><li>行政安全事项不能停留在“已规范”。检查、整改、复查和责任人必须形成一条完整证据链。</li></ol></div></section><section class="report-section report-section-accent" id="review"><div class="section-head"><span class="section-index">10</span><h2>十、上周动作复盘</h2></div><div class="section-body"><div class="table-wrap"><table><thead><tr><th>W46动作</th><th>状态</th><th>W47核验</th><th>下一步</th></tr></thead><tbody><tr><td>补齐W46缺报与W45剩余缺报</td><td>未完成</td><td>历史缺报仍有10人日，涉及灵汐、布鲁托、渡渡、杰斯</td><td>11/24前补齐或说明；不再以口头确认替代记录</td></tr><tr><td>办公区安全检查留档</td><td>部分完成</td><td>梦幻连续记录“规范办公室用电安全”，未见清单、照片和复查结论</td><td>11/25前完成完整证据包</td></tr><tr><td>建立运营客户台账和工作包</td><td>部分完成</td><td>木子建立截流私信登记表；仍无统一有效客资台账和团队验收台账</td><td>11/24前统一字段并指定验收人</td></tr><tr><td>完成原蜜璃IP视频重新指派</td><td>未确认</td><td>只见皮卡IP视频计划，未见正式交接和2条成片链接</td><td>明确主责、逐条状态、交付日期和验收人</td></tr><tr><td>完成固定账号证据</td><td>部分完成</td><td>公众号完成；两个视频号和朋友圈证据包仍不完整</td><td>11/27前提交账号、链接、图片或发布截图</td></tr><tr><td>修复日报解析表</td><td>未完成</td><td>W47解析表仍为0条</td><td>用50条W47原始日报回放验收</td></tr><tr><td>建立项目视频唯一编号</td><td>部分完成</td><td>花花、米咖使用项目编号明显增加</td><td>继续补版本、返工、链接和验收</td></tr><tr><td>形成首批效率样本</td><td>未完成</td><td>完整四项样本仍为0</td><td>先从公众号、项目视频和拍摄各选1个样本</td></tr></tbody></table></div></div></section><section class="report-section report-section-accent" id="next-week"><div class="section-head"><span class="section-index">11</span><h2>十一、下周重点</h2></div><div class="section-body"><div class="table-wrap"><table><thead><tr><th>截止时间</th><th>重点事项</th><th>负责人</th><th>验收证据</th></tr></thead><tbody><tr><td>11/24</td><td>补齐W47缺报7人日并说明11/17花花两条记录</td><td>花花、皮卡、木子、洛米、杰斯</td><td>补报记录、缺报说明、工时拆分</td></tr><tr><td>11/24</td><td>补齐历史缺报10人日或书面说明</td><td>灵汐、布鲁托、渡渡、杰斯</td><td>补报记录或书面说明</td></tr><tr><td>11/24</td><td>建立统一有效客资台账并核验到11/20</td><td>灵汐、梦幻、木子、洛米、杰斯</td><td>触达、有效客资、成交、异常、下一步和验收人</td></tr><tr><td>11/24</td><td>明确互远AI视频号、灵汐IP视频号和原蜜璃任务主责</td><td>灵汐、花花、皮卡、品牌组</td><td>账号、主责人、2条成片、链接和发布状态</td></tr><tr><td>11/25</td><td>完成办公区用电安全检查、整改和复查</td><td>梦幻、行政责任人</td><td>检查清单、照片、整改项和复查结论</td></tr><tr><td>11/26</td><td>补齐小草朋友圈3条/5图证据包</td><td>小草、皮卡</td><td>内容清单、图片、账号、发布时间和验收人</td></tr><tr><td>11/27</td><td>修复日报解析表并回放W47的50条日报</td><td>布鲁托、梦幻</td><td>解析记录、人员归属、任务类型、工时和字段完整率</td></tr><tr><td>11/27</td><td>形成首批3至5个效率样本</td><td>项目经理、品牌组、运营组</td><td>唯一编号、标准工时、实际有效工时、返工和验收</td></tr><tr><td>11/27</td><td>建立项目视频交付清单</td><td>花花、皮卡、米咖、渡渡</td><td>编号、版本、新做/返工、链接和验收</td></tr><tr><td>11/27</td><td>统一日报时间写法并做一次全员校验</td><td>梦幻、各岗位负责人</td><td>时间单位规范、无标题误识别、无总拆分重复</td></tr></tbody></table></div></div></section><section class="report-section" id="section-11"><div class="section-head"><span class="section-index">12</span><h2>附：核验口径</h2></div><div class="section-body"><ul><li>原始日报：Base <code>V1JWbJGmxaL335sBtnsc6EvxnLc</code> / <code>tbl2PcridDdNtEWz</code>，W47查询50条、revision 1330、<code>has_more=false</code>；11月1日至20日查询154条、<code>has_more=false</code>。</li><li>日报解析：Base <code>V1JWbJGmxaL335sBtnsc6EvxnLc</code> / <code>tblWn0rrSx5Hmlt2</code>，W47查询0条、revision 1834、<code>has_more=false</code>。</li><li>员工管理：Base <code>PTrfbqA6qaZiuTsz7qncRygunZf</code> / <code>tblAnWueUGOJJZkq</code>，17条记录、revision 171、<code>has_more=false</code>。</li><li>权威系数：Base <code>Ox4RbbEjva0hNzs5NhYcGHjFnbc</code> / <code>tblGbRpm9xeqdknQ</code>，35项、revision 86；版本表<code>tblVvsOAgHHbMUrJ</code>共4条、revision 3，当前版本v0.3。</li><li>审批：W47已办请假5条、外出4条、出差0条；11月1日至20日请假13条、外出9条，均<code>has_more=false</code>。</li><li>人员归因：<code>reczz28an8O3tMIC</code>、<code>reczz28bCr9V2Ips</code>由孙杰睿创建，归属杰斯；W45空人员记录<code>reczz28UotkbwcaK</code>归属渡渡。</li><li>日期修正：皮卡<code>reczz28YoMMZjdL3</code>按W46已核实口径归入2026-11-12。</li><li>W47应报日：12名需报人员×5个工作日=60，扣除杰斯全假2天、渡渡全假2天、菲菲长期病假5天，得56人日。</li><li>工时：范围值按区间中值计入；标题内时间不计量；总工时后的上午/下午拆分不重复累计；<code>m</code>按分钟计入；未写时间不自动补8小时。</li><li>11月截至11/20共15个工作日，全月21个工作日；运营目标时间进度按15/21计算，仅作过程提示，最终仍以月度确认结果为准。</li></ul></div></section>
+    <section class="kpis"><article class="kpi"><div class="label">日报合规率</div><div class="value">87.5%</div><div class="muted">49 / 56人日</div></article><article class="kpi"><div class="label">缺报</div><div class="value">7人日</div><div class="muted">缺报人员优先修数据完整性</div></article><article class="kpi"><div class="label">已验收任务</div><div class="value">0</div><div class="muted">不允许用工时替代验收</div></article><article class="kpi"><div class="label">可结算效率样本</div><div class="value">0</div><div class="muted">编号、标准工时和验收仍未成组</div></article></section>
+    <div class="alert">本周管理重点：先补齐数据完整性，再处理结果差距、效率差距和能力差距。每人只推进一个主要实验。</div>
+    <section class="section" id="decisions"><div class="section-head"><span class="section-index">01</span><h2>本周管理决策</h2></div><div class="table-wrap"><table><thead><tr><th>决策</th><th>本周决定</th><th>负责人</th><th>截止时间</th><th>验收证据</th></tr></thead><tbody><tr><td>调整</td><td>从W47起改为团队复盘版加私密个人改进卡；团队版不再公开逐人长表和工时排名。</td><td>灵汐</td><td>2026-11-24</td><td>12张个人改进卡与团队周报已生成并完成权限核验</td></tr><tr><td>停止</td><td>停止用会议、筛选名单、养号或工时本身替代业务结果与验收证据。</td><td>各岗位负责人</td><td>2026-11-27</td><td>团队结果看板和固定任务只接受链接、数量、验收人</td></tr><tr><td>继续</td><td>继续修复日报解析表，并把缺报、任务编号、实际工时和验收结果接入同一条数据链。</td><td>布鲁托、梦幻</td><td>2026-11-27</td><td>W47的50条日报回放通过，字段完整率可复算</td></tr></tbody></table></div><h3>本周团队实验</h3><div class="callout"><strong>用W47的50条原始日报回放解析表，先证明数据能自动归属、拆分和验收，再扩到W48。</strong></div><div class="table-wrap"><table><thead><tr><th>指标</th><th>基线</th><th>目标</th><th>验收证据</th><th>验收人</th><th>截止时间</th></tr></thead><tbody><tr><td>可正确解析并归属的日报比例</td><td>0/50</td><td>50/50</td><td>解析表回放记录、人员归属、任务类型、工时与验收字段</td><td>灵汐</td><td>2026-11-27</td></tr></tbody></table></div></section><section class="section" id="results"><div class="section-head"><span class="section-index">02</span><h2>团队结果看板</h2></div><div class="table-wrap"><table><thead><tr><th>结果指标</th><th>本周结果</th><th>目标</th><th>状态</th><th>验收证据</th></tr></thead><tbody><tr><td>日报合规</td><td>49/56人日</td><td>100%</td><td>87.50%，未达标</td><td>W47最新日报与审批回读</td></tr><tr><td>有效客资</td><td>0个可核验</td><td>木子50、洛米50、杰斯25</td><td>不能判定</td><td>尚无统一CRM或客户台账</td></tr><tr><td>四项齐全效率样本</td><td>0个</td><td>首批3至5个</td><td>未形成</td><td>缺唯一编号、逐项工时或验收的成组证据</td></tr><tr><td>公众号固定任务</td><td>至少2次发布记录</td><td>每周1篇</td><td>已完成</td><td>小草11/18、11/19发布记录</td></tr><tr><td>公司官方视频号</td><td>0条可验证发布</td><td>每周1条</td><td>未确认</td><td>缺官方账号与发布链接，项目号不计</td></tr></tbody></table></div><h3>W46至W47趋势</h3><div class="table-wrap"><table><thead><tr><th>指标</th><th>W46</th><th>W47</th><th>变化</th><th>判断</th></tr></thead><tbody><tr><td>日报合规率</td><td>92.98%</td><td>87.50%</td><td>-5.48个百分点</td><td>下降</td></tr><tr><td>有效提交人日</td><td>53/57</td><td>49/56</td><td>少4/多1个应报分母</td><td>变差</td></tr><tr><td>明确记录工时</td><td>302.26小时</td><td>287.11小时</td><td>-15.15小时</td><td>只作记录完整性观察</td></tr><tr><td>可结算效率样本</td><td>0个</td><td>0个</td><td>无改善</td><td>核心缺口</td></tr></tbody></table></div></section><section class="section" id="losses"><div class="section-head"><span class="section-index">03</span><h2>主要损耗与删除动作</h2></div><div class="table-wrap"><table><thead><tr><th>主要损耗</th><th>影响</th><th>本周处理</th><th>负责人</th><th>验收证据</th></tr></thead><tbody><tr><td>日报解析与人工复核重复</td><td>每周仍需人工归属、拆工时和补齐验收，挤占经营分析时间</td><td>自动化</td><td>布鲁托、梦幻</td><td>W47的50条日报回放通过并输出异常清单</td></tr><tr><td>同日多条与任务重叠记录</td><td>工时可能重复，个人负荷无法直接比较</td><td>删除重复、一日一条、任务编号</td><td>花花及各岗位负责人</td><td>11/17两条记录说明和后续W48日报</td></tr><tr><td>候选名单和过程动作未转成客户结果</td><td>KOC、PR、加微信和截流动作不能证明有效客资</td><td>重分配为一条客户漏斗</td><td>灵汐、梦幻、木子、洛米、杰斯</td><td>客户台账字段与11/20前结果回溯</td></tr></tbody></table></div></section><section class="section" id="efficiency"><div class="section-head"><span class="section-index">04</span><h2>效率与质量</h2></div><div class="table-wrap"><table><thead><tr><th>已验收任务</th><th>一次通过率</th><th>标准工时</th><th>实际有效工时</th><th>返工工时</th><th>被复用次数</th></tr></thead><tbody><tr><td>0</td><td>未统计</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div><p><strong>说明：</strong>本周有287.11小时明确记录工时，但唯一编号、标准工时、实际有效工时和验收结果没有在同一任务项中成组出现，因此可结算样本仍为0；记录工时只用于发现损耗。</p></section><section class="section" id="capability"><div class="section-head"><span class="section-index">05</span><h2>能力进展</h2></div><div class="table-wrap"><table><thead><tr><th>人员</th><th>能力方向</th><th>真实任务</th><th>可复用成果</th><th>采用状态</th></tr></thead><tbody><tr><td>灵汐</td><td>商务方案到转化闭环</td><td>用上海建行和AI沙龙验证同一条商务推进路径</td><td>重点商务事项决策台账模板</td><td>待市场与项目负责人试用</td></tr><tr><td>叮当</td><td>财务与资源治理自动化</td><td>把财务报表自动化扩展到招聘和供应商结果追踪</td><td>重点事项结果追踪模板</td><td>待灵汐试用</td></tr><tr><td>布鲁托</td><td>平台稳定性与自动化交付</td><td>为小象、象群和增长引擎建立统一发布与复测记录</td><td>技术发布、复测和回退清单</td><td>待梦幻采用</td></tr><tr><td>梦幻</td><td>行政风险流程化</td><td>把用电安全检查固化为可重复的风险清单</td><td>办公区安全风险检查模板</td><td>待行政责任人使用</td></tr><tr><td>花花</td><td>项目经营与交付统筹</td><td>把项目脚本、拍摄、发布和验收接入同一项目清单</td><td>项目视频交付与排期清单</td><td>待皮卡、米咖共用</td></tr><tr><td>皮卡</td><td>复杂视频与模板沉淀</td><td>从一个品牌视频提炼可复用的审核清单</td><td>复杂视频一次通过检查表</td><td>待米咖、渡渡使用</td></tr><tr><td>米咖</td><td>标准剪辑效率</td><td>用5条已发布视频校准单条制作与返工时间</td><td>项目视频工时与返工登记表</td><td>待花花项目排期使用</td></tr><tr><td>小草</td><td>内容生产标准化</td><td>用一篇公众号验证写作、配图、排版的分项标准</td><td>公众号三工序记录模板</td><td>待品牌组成员使用</td></tr><tr><td>渡渡</td><td>AI视频工作流</td><td>用莫莫IP视频固化素材分层、版本和交付节点</td><td>IP视频版本与交付清单</td><td>待花花、皮卡试用</td></tr><tr><td>木子</td><td>客户漏斗运营</td><td>把截流登记升级为触达、有效客资、下一步和成交状态</td><td>运营客户漏斗模板</td><td>待洛米、杰斯共用</td></tr><tr><td>洛米</td><td>账号矩阵与客户筛选</td><td>用10个候选资源验证筛选到有效客资的标准</td><td>KOC/PR筛选与跟进表</td><td>待木子、杰斯使用</td></tr><tr><td>杰斯</td><td>直播协同与销售截流</td><td>把直播执行和截流结果接到同一张日常表</td><td>直播执行与截流日报模板</td><td>待木子、洛米参考</td></tr></tbody></table></div></section><section class="section" id="unfinished"><div class="section-head"><span class="section-index">06</span><h2>未完成事项</h2></div><div class="table-wrap"><table><thead><tr><th>未完成事项</th><th>负责人</th><th>当前卡点</th><th>下周证据</th><th>验收人</th><th>截止时间</th></tr></thead><tbody><tr><td>W47缺报7人日</td><td>花花、皮卡、木子、洛米、杰斯</td><td>本人未提交或未说明</td><td>补报记录或书面说明</td><td>直属负责人</td><td>2026-11-24</td></tr><tr><td>历史缺报10人日</td><td>灵汐、布鲁托、渡渡、杰斯</td><td>历史补报仍未完成</td><td>补报记录或关闭说明</td><td>灵汐</td><td>2026-11-24</td></tr><tr><td>运营有效客资台账</td><td>灵汐、梦幻、木子、洛米、杰斯</td><td>缺统一字段和CRM结果</td><td>触达、有效客资、下一步、成交和验收人</td><td>灵汐</td><td>2026-11-24</td></tr><tr><td>公司官方视频号与灵汐IP视频号</td><td>花花、皮卡、品牌组</td><td>缺账号负责人和发布链接</td><td>账号、成片链接、发布时间和验收人</td><td>灵汐</td><td>2026-11-24</td></tr><tr><td>办公区用电安全复查</td><td>梦幻、行政责任人</td><td>只有“规范用电”动作，无检查与复查留档</td><td>检查清单、照片、整改项和复查结论</td><td>灵汐</td><td>2026-11-25</td></tr><tr><td>日报解析表连续为0</td><td>布鲁托、梦幻</td><td>触发与日期同步未修复</td><td>W47的50条原始日报回放结果</td><td>灵汐</td><td>2026-11-27</td></tr><tr><td>首批可结算效率样本</td><td>项目经理、品牌组、运营组</td><td>唯一编号、标准工时、实际有效工时和验收未成组</td><td>3至5个完整任务样本</td><td>梦幻</td><td>2026-11-27</td></tr></tbody></table></div></section><section class="section" id="monthly"><div class="section-head"><span class="section-index">07</span><h2>月度绩效进度</h2></div><div class="table-wrap"><table><thead><tr><th>人员</th><th>月度目标</th><th>当前进展</th><th>状态</th><th>管理决定</th></tr></thead><tbody><tr><td>木子</td><td>有效客资70个；团队任务≥90%</td><td>0个可核验；时间进度应约50个；日报3/5</td><td>不能判定且需修数据</td><td>先补数据与客户漏斗，不评价最终达标</td></tr><tr><td>洛米</td><td>有效客资70个</td><td>0个可核验；时间进度应约50个；日报3/5</td><td>不能判定且需修数据</td><td>先补数据与客户漏斗，不评价最终达标</td></tr><tr><td>杰斯</td><td>有效客资35个</td><td>0个可核验；时间进度应约25个；日报2/3</td><td>结果与数据双缺口</td><td>先补日报，再恢复每日截流台账</td></tr><tr><td>花花</td><td>项目成本、里程碑、回款和P&amp;L</td><td>项目交付连续；成本、回款和里程碑准时率尚未形成月末证据</td><td>月末计算</td><td>W48继续按项目台账核验，不用第三方发布替代官方账号</td></tr><tr><td>米咖</td><td>东湖高新常规视频16条与单条效率</td><td>项目视频连续推进；正式条数与单条工时需以已发布视频库核对</td><td>进度推进</td><td>下一周只核对已发布清单和返工工时</td></tr><tr><td>布鲁托</td><td>技术里程碑与平台稳定</td><td>累计日报9/15；小象、象群、MCP有连续进展</td><td>过程证据充足，验收不足</td><td>减少并行链路，补里程碑验收和剩余日报</td></tr></tbody></table></div></section>
   </main>
-  <footer>
-    <div class="container">数据来源：飞书工作日报中心、员工管理表、请假与外出审批、11月绩效方案。系数口径以 <a href="https://fcnegd976pzo.feishu.cn/wiki/SbyvwteeFiNiLRkhnABcmmZZnkb?from=from_copylink" target="_blank" rel="noreferrer">工作系数与标准库</a> 为准。页面禁止搜索引擎索引。</div>
-  </footer>
+  <footer><div class="container">周度事实源：飞书日报、审批与员工管理；团队版不含个人私密管理备注。页面禁止搜索引擎索引。</div></footer>
   <script>
     const links = Array.from(document.querySelectorAll(".nav-links a"));
     const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
     const observer = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!visible) return;
       links.forEach((link) => {
         const active = link.getAttribute("href") === "#" + visible.target.id;
         link.toggleAttribute("aria-current", active);
         if (active) link.setAttribute("aria-current", "true");
       });
-    }, { rootMargin: "-20% 0px -65% 0px", threshold: [0.05, 0.2, 0.5] });
+    }, {rootMargin:"-20% 0px -65% 0px",threshold:[0.05,0.2,0.5]});
     sections.forEach((section) => observer.observe(section));
   </script>
 </body>
